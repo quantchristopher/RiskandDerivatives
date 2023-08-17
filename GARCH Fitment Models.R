@@ -1,7 +1,7 @@
-##### Ch14 - Fitting Simple GARCH Models to Time Series Data
+##### Fitting Simple GARCH Models to Time Series Data by Christopher Thomson
 
-### Fitting a simple GARCH model to BMW stock log-returns, built on simple 
-#   Gaussian White Noise Innovations.
+## Fitting a simple GARCH model to BMW stock log-returns, built on simple 
+## Gaussian White Noise Innovations.
 
 # Needed dataset embedded in evir package --> install.packages("evir") 
 library(evir) 
