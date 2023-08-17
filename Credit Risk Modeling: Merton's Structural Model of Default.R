@@ -1,14 +1,13 @@
-##### QRM Chapter 10 - Simulating Basics of Merton Model 
+##### Robert Merton's Structural Model of Default by Christopher Thomson
+
+## The following code implements Robert Merton's simple model of default risk for credit risky 
+## instruments issued by a firm with publicly available/market information about its equities. 
+
 
 #### Setup and Path Simulation ####
 
 library(qrmtools)
 library(Sim.DiffProc)
-
-Brownie1 <- BM(N = 10, M = 1, x0 = 0, t0 = 0) 
-Brownie2 <- BM(N = 100, M = 2, x0 = 0, t0 = 0)
-Brownie3 <- GBM(N = 364, M = 1, x0 = 1, t0 = 0, T = 1, theta = 0.02, sigma = 0.25)
-plot.ts(Brownie3)
 
 ## Parameterizing Merton Model:
 V.0 <- 1 # Initial Value
@@ -39,7 +38,7 @@ for(i in 1:npaths) {
 abline(v = 1)
 abline(h = B)
 
-## Overlay a lognormal density:
+## Overlay the lognormal density:
 lnV.mu <- log(V.0) + ((mu.V-r)/sigma.V -0.5*sigma.V^2)*T 
 lnV.sigma <- sigma.V*sqrt(T) 
 rvals <- range(paths) # Min to max value of all paths
