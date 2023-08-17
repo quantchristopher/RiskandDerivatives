@@ -1,4 +1,5 @@
-##### Chapter 19 - VaR and ES using parametric fitting 
+##### Modeling Value-at-Risk and Estimated Shortfall Using Parametrically Modeled Distributions from Data
+#  by Christopher Thomson
 
 ## Recall: let F(r|thetavec) be a parametric family of distributions used to model the return
 ## distribution given parameters thetavec. If thetavec is estimated via MLE from historic returns
@@ -9,7 +10,7 @@
 ## Also recall: if f(r|thetavec) is the density of the distribution -> F(r|thetavec) 
 ## then the ES_parest(alpha) = -(S/alpha) * integral[-infinity,F^-1(alpha|thetavec)](x*f(x|thetavec)dx)
 
-### Example 19.3 - Assume that returns are iid t-distributed such that
+## Here assume that returns are iid t-distributed such that
 ## VaR(alpha) = -S * [mu_hat + q_alpha/t(nu_hat)*lambda_hat]
 ## which mu = mean, nu = scale, lambda = tail index of a sample of returns 
 ## and q is the alphath quantile of the t-distribution with index nu so that the 
