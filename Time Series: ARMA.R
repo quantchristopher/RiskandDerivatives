@@ -1,4 +1,6 @@
-### ARMA Practice Script ###
+##### ARMA Basics by Christopher Thomson
+
+## Basics in constructing ARMA models using zoo and tseries R packages 
 
 library(zoo)
 library(tseries)
