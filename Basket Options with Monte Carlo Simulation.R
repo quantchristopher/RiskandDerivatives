@@ -1,4 +1,4 @@
-##### Wilmott - Basic Basket Options
+##### Pricing Basic Basket Options by Christopher Thomson
 
 ### Introduction ####
 
