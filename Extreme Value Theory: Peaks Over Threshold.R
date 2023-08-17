@@ -1,6 +1,6 @@
-##### QRM Chapter 5 - Danish Fire Data
+##### Extreme Value Theory Peaks Over Threshold Method by Christopher Thomson
 
-##### Packages + Setup #####
+#### Packages + Setup ####
 
 library(xts)
 library(qrmdata)
