@@ -1,12 +1,14 @@
-### Ch_5 Fitting Distribution by Max-Likelihood
-### Example finds a distribution of changes in the risk-free rate 
+##### Parametrically Fitting a Probability Distribution by Max-Likelihood by Christopher Thomson
 
-rm(list = ls())
+## As mentioned in the title, this code intends to fit the space, shape, and location parameters of a 
+## probability distribution to dataset. Specifically it intends to fit monthly changes observed in the 
+## United States short term treasury yield to a generalized student's t-distribution. 
+
 data(Capm, package = "Ecdat") ### Loads data stored in the Ecdat package, specifically Capm dataset
 rf <- Capm$rf
 rf_diff <- diff(rf)
 
-### Requires MASS
+### Requires package MASS:
 library(MASS)
 
 fitdistr(rf_diff, densfun = "t") ### Fits data to distribution, in this case t
@@ -63,11 +65,4 @@ fitdistr(logret_ferr, densfun = "normal")
 loglike_ferr <- function(ferr_mu,ferr_sigma) sum( -log((1/ferr_sigma*sqrt(2*pi))*exp(0.5*((logret_ferr-ferr_mu)/ferr_sigma)^2
                                                                    )) )
 loglike_ferr2 <- function(ferr_mu, ferr_sigma) sum(-log(dnorm(logret_ferr, mean = ferr_mu, sd = ferr_sigma )))
-
-### Not finished
-start2 <- c(ferr_mu,ferr_sigma,5)
-fit_ferr <- optim(start2, loglike_ferr, hessian = TRUE, method = "L-BFGS-B", lower = c(-1, .001, 1))
-
-
-
 
