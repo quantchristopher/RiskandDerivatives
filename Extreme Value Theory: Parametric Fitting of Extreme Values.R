@@ -1,5 +1,12 @@
-##### QRM Chapter 5 Dow Jones 12 Stocks
+##### Parametric Modeling of Extreme Returns Observed in Dow Jones Constituent Stocks by Christopher Thomson
 
+## The following code intends to extract extreme returns (above a given threshold return level) observed 
+## in 12 Dow Jones stocks. Those extreme returns are then used to parametrically fit an Extreme Value Distribution
+## as well as a Generalized Pareto Distribution, both used as means to model dramatic price swings that may occur
+## in the constituent stocks - from which various risk measures (i.e. VaR and ES) can be calculated.
+
+
+### Load Packages:
 library(xts)
 library(qrmdata)
 library(qrmtools)
