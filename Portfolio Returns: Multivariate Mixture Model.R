@@ -1,5 +1,11 @@
-##### QRM Chapter 6 - Fitting Dow Jones Constituents to MV Mixture Models
+##### Financial Returns Distribution Modeling by Christopher Thomson
 
+## The following code intends to model a multivariate distribution of returns for a portfolio of Dow Jones
+## listed public equities. Using Maximimum Likelihood Estimation, a probability distribution of the mixture
+## model variety is elucidated. The distribution can then be used to make inferences about future returns as
+## well as provide insights about the portfolio's overall risk profile.
+
+# Requires R Package:
 library(ghyp)
 
 #### Data Setup and Extraction ####
