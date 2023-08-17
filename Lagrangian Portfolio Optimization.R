@@ -1,8 +1,11 @@
-##### Chapter 16 Portfolio Optimization for given return and risk tolerances
+##### Portfolio Optimization for given return and risk tolerances
 
-### Markowitz Problem for n - risky assets using Lagrangian Multipliers
+## The following code fulfills the task of a Markowitz portolio optimization for 
+## n - risky assets using Lagrangian Multipliers and matrix method solutions. 
 
-### Setting up Markowitz portfolio optimization of w_vec, given constraint that all of
+
+### Function Setup #### 
+## Markowitz portfolio optimization of w_vec, given constraint that all of
 ## w_vec must be invested, portfolio covariance matrix must be minimized
 
 markowitz <- function(mu,cv,Er) {
@@ -21,7 +24,7 @@ markowitz <- function(mu,cv,Er) {
   wts = g + h*Er
 }
 
-mu = matrix(c(0.02,0.10,0.20),3,1)
+mu = matrix(c(0.02,0.10,0.20),3,1) 
 n = length(mu)
 cv = matrix(c(0.0001,0,0,0,0.04,0.02,0,0.02,0.16),n,n)
 Er = 0.18
