@@ -1,24 +1,17 @@
-#### QRM Chapter 5 - Applying Block Maxima Method to S&P 500 Returns
+#### Applying Block Maxima Method to S&P 500 Returns by Christopher Thomson
 
-## 1) Compute the probability of next year's maximal risk-factor change
-##    exceeding all previous ones via the BBM based on S&P 500 data;
-##    see MFE (2015, Example 5.12).
-## 2) Compute a return level;  see MFE (2015, Example 5.15)
-## 3) Compute a return period; see MFE (2015, Example 5.15)
+## The following code is an example of applying Extreme Value Theory, specifically the Block Maxima Method 
+## to identify an equity index's extreme return level and extreme return period. Here Standard and Poor's 
+## Blue Chip 500 Index equity data is used. 
 
-## Note: Different databases can (and indeed do) provide different stock values
-##       for the S&P 500. The data below (from qrmdata) is from finance.yahoo.com
-##       and thus our computed values differ from the values reported
-##       in MFE (2015). Also, we (mostly) work with log-returns
-##       instead of classical returns here.
+##  ** Note log-returns are used **
 
-
-### Setup ######
+### Setup ####
 library(xts) # for functions around time series objects
 library(qrmdata) # for the S&P 500 data
 library(qrmtools) # for returns()
 
-#### Data Importing and Preliminary Analysis ####
+### Data Importing and Preliminary Analysis ####
 data("SP500")
 S <- SP500
 X <- returns(S, method = "logarithmic") # Computes Log-Returns
