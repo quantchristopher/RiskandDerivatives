@@ -1,5 +1,6 @@
 # RiskandDerivatives
-This repository contains samples of my coding history written in the R and Excel/VBA languages. 
+This repository contains samples of my coding history written in the R language. 
+
 Each file pertains to various topics in quantitative finance ranging from derivative contract pricing, 
 financial asset return profiling, risk parameterization, risk management, discounted cash flow modeling,
 and portfolio construction/optimization. It has been my intention to provide most files with extensive 
