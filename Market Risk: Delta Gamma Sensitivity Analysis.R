@@ -1,7 +1,13 @@
-###### QRM Chapter 9 - Delta and Gamma Approximation
-## (Sensitivity Analysis)
+###### Computing Delta-Gamma and Approximations for Sensitivity Analysis to Adverse Movements by a Portfolio
+#  by Christopher Thomson
 
-#### Data + Setup ####
+## The following code intends to construct linear (delta) and quadratic (delta-gamma) approximating functions 
+## for changes in a portfolio's aggregate value. Based on the previous work of Paul Embrechts and Marius Hoffert,
+## the code follows construction of a linear/quadratic loss operator function given financial return datasets. 
+## The delta-gamma loss operator function can be considered as a exploratory form of sensitivity analysis for 
+## a portfolio (in this case of equities).
+
+### Data + Setup ####
 
 library(xts)
 library(qrmtools)
