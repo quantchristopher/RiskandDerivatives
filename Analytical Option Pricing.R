@@ -1,4 +1,14 @@
-##### AFCQF - Simple Analytical Options 
+##### Simple Analytical Options by Christopher Thomson
+
+
+## The following code facilitates the pricing formulas for a variety of simple or "vanilla" financial options.
+## Each contract is listed as a function of key inputs: 
+## Underlying Asset Level  = S_t 
+## Strike/Exercise Level   = K 
+## Risk-Free Interest Rate = r
+## Contract Maturity       = T
+## Time to Maturity        = t
+
 
 ### Binary Option Solutions ####
 ## Call ption pays 1 unit of cash if in-the-money, nothing if out-of-the money
@@ -27,6 +37,7 @@ Binary.Put <- function(S_t,K,r,sigma,T,t)
 ## Continuous dividend paying yield q           b = r - q
 ## Foreign Currency with foreign risk free r_F  b = r - r_F
 ## Commodity Option with storage cost rate c_s  b = r + c_s
+## Commodity Option with convenience yield y    b = r - y
 ## Option on a forward or futures contract      b = 0
 
 ## Vanilla Call Option with b inputs:
@@ -120,7 +131,7 @@ Euro.Call.cashdiv(135,119,0.02,0.02,0.68,12,0.115,1,0,(21/250),(249/250))
 
 ### BSM Analytical Solution for Perpetual American Put ####
 ## This is effectively the only formulaic solution for an American Style derivative
-# and it assumes several constants that may or may not exists empirically beyond 
+# and it assumes several constants that may or may not exists empirically beyond a certain length of time
 American.Put.perp <- function(S_t, K, r, sigma)
 {
   ((sigma^2*K)/(2*r+sigma^2))*(K/(S_t*(1+(sigma^2/2*r))))^(2*r/sigma^2)
