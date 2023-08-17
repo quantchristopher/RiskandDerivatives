@@ -1,8 +1,8 @@
-##### QRM Chapter 10 - Merton Implied Credit Spreads 
+##### Merton Implied Credit Spreads by Christopher Thomson
 
-### Simple approach to calculating the spread between the ccYTM of a firm's
-# defaultable debt over the ccYTM of a risk free debt security with the "same" 
-# maturity and payment schedule 
+## The following code provides a simple approach to calculating the numerical rate spread between the 
+## ccYTM of a debt issuing firm/company's defaultable debt over the ccYTM of a risk free debt security 
+## with the "equivalent" term structure.
 
 MertonSpread <- function(leverage, tau, sigma.V) 
 {
