@@ -1,7 +1,8 @@
-##### GARCH Additionals - Ruppert Chapter 14
+##### Constructing Basic GARCH Models by Christopher Thomson
+
+## The following code simulates simple ARMA + GARCH models 
 
 ### Simulating a basic AR(1) ARCH(1) Model ####
-
 n <- 10200 # NOS
 e <- rnorm(n) # 10200 RVs ~ N(0,1). When plotted as a time series this is the Gaussian White Noise Component
 h <- e # Dummy Vector for h terms to be filled - once filled values will be the ARCH
