@@ -1,4 +1,11 @@
-##### QRM Chapter 10 - Expected Default Frequency Example Radioshack
+##### Expected Default Frequency Example by Christopher Thomson
+
+## The following code intends to demonstrate Merton's modified method for estimating default frequency on  
+## maturing debt securities. Using Radioshack Inc.'s ($RSHCQ) closing stock price data over a successive 
+## period, a statistical distribution of stock price returns are estimated. Parameters of this distribution 
+## are then input into the famous Black-Scholes formulaic solution. As per the Merton method, from this approach
+## an accurate range of values for Radioshack's corresponding debt's Expected Default Frequency and Distance to 
+## Default can be estimated given the debt's time to maturity. See comments below for greater detail:
 
 #### Setup and Data Import ####
 ## Necessary Packages:
@@ -78,7 +85,7 @@ while ((abs(Sigma.V.new-Sigma.V.old)/Sigma.V.old) > 0.000001)
 Sigma.V.new
 count
 tail(V.daily)
-plot(V.daily, ylim = range(V.daily, S.daily)) ## Not sure why the range is this...
+plot(V.daily, ylim = range(V.daily, S.daily)) 
 
 ## Merton Distance to Default:
 DD <- (log(V.daily[length(V.daily)]) - log(B)/Sigma.V.new)
