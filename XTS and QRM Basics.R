@@ -1,4 +1,4 @@
-##### QRM Chapter 5 Dow Jones 12 Stocks
+##### Practice Script utilizing the XTS, qrmdata, and qrmtools R packages
 
 library(xts)
 library(qrmdata)
