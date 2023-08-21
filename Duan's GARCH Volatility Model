@@ -1,4 +1,11 @@
-##### AFCQG Chapter 15 - Simple GARCH model for deterministic volatility
+##### Duan's GARCH Model for Non-Constant Volatility by Christopher Thomson
+
+## This script reproduces Duan's model for GBM price paths by incorporating non-constant/dynamic volatility through use of 
+## General Auto Regressive Conditional Heteroscedasticity - GARCH modeling. In other words, the price differential of an asset
+## (in the example Microsoft Share Price) is modeled as dS = mu*dt + sigma*dW, however while sigma is deterministic it is not
+## static. Conditioning upon past return data, an ARMA(0,0)+GARCH(1,1) is constructed to model the distribution of future returns.
+## The distribution's dynamic sigma parameter provides insight into a more precise term structure model for sigma leading to more
+## accurate stochastic term sigma*dW for modeling future price paths. 
 
 ### Generating a simulated price path from a Garch model: ####
 library(rugarch)
@@ -41,6 +48,7 @@ Spec.2 <- ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1,1)
                      mean.model = list(armaOrder = c(0,0), include.mean = FALSE),
                      distribution.model = "std")
 
+## Repeating the process for NASDAQ composite:
 NASDAQ.3yr <- NASDAQ["2010-01-01/2012-12-31"]
 NAS.X <- returns(NASDAQ.3yr, method = "logarithmic")
 sd(NAS.X)
@@ -49,11 +57,13 @@ NASDAQ.Spec.2Fit <- ugarchfit(spec = Spec.2, data = NAS.X)
 
 plot(NASDAQ.Spec.2Fit) ## Will provide multiple plots available to the user
 
-
+## Generating a theoretical future price path of MSFT prices that incorporates parameters derived from the GARCH(1,1) regression above:
 Sim.Spec <- ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1,1)),
                        mean.model = list(armaOrder = c(0,0), include.mean = FALSE),
                        distribution.model = "norm",
-                       fixed.pars = list(omega = 0.00000365, alpha1 = 0.094 , beta1 = 0.885))
+                       fixed.pars = list(omega = 0.00000365, alpha1 = 0.094 , beta1 = 0.885)) 
+
+
 
 
 Sim.Spec.Paths <- ugarchpath(Sim.Spec, n.sim = 504, n.start = 400, m.sim = 5)
