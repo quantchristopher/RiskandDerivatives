@@ -1,4 +1,7 @@
-##### Chapter 11 NonLinear Regression Using Treasury STRIPS to construct forward rate curve
+##### Computing Forward-Rate Curve Using Non-Linear Regression:
+
+## The following code utilizes treasury STRIP data to construct a forward-rate base yield curve. Non-linear regression is used.
+
 
 ### Empirically mapping STRIP prices against maturity as well as -ln(P(T_i))/delta T_i
 TData <- read.table("strips_dec95.txt", header = TRUE)
