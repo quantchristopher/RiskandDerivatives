@@ -1,4 +1,4 @@
-##### QRM Chapter 6 - Fitting MV.norm and MV.t to financial data:
+##### Fitting Multivariate Normal and Multivariate t distributions to financial return data:
 library(xts)
 library(nvmix) # Package great for fitting distributions (see Ruppert for alternative packages)
 library(qrmdata)
