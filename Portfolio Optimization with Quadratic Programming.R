@@ -4,7 +4,7 @@
 ## A set of known financial assets with given return distributions are to efficiently allocated with a given number of
 ## constraints. The script takes full advantage of functions offered by the quadprog package in R.
 
-### Example 16.6 Using CRSPday data
+### Using CRSPday data
 library(Ecdat)
 library(quadprog)
 
