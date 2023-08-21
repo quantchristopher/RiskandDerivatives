@@ -1,4 +1,8 @@
-##### Computing efficient portfolios of N assets using quadratic programming (Not Lagrange)
+##### Computing efficient portfolios of N risky assets via quadratic programming (Not Lagrange) by Christopher Thomson
+
+## The following script fulfills the task of a Markowitz portfolio optimzation through the use of quadratic programming.
+## A set of known financial assets with given return distributions are to efficiently allocated with a given number of
+## constraints. The script takes full advantage of functions offered by the quadprog package in R.
 
 ### Example 16.6 Using CRSPday data
 library(Ecdat)
