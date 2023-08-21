@@ -1,4 +1,7 @@
-##### QRM Chapter 10 - Calibrating a CDS for fixed hazard rate
+##### Calibrating the "Fair Credit Insurance Buyer Rate" for CDS with fixed hazard rate.
+
+## The following code will price the fair value rate that a credit investor would pay for a credit default swap on a reference entity with 
+## its credit riskiness modeled by a static/deterministic/fixed hazard rate. 
 
 ## General Inputs into CDS:
 delta.t <- 0.25 # Quarterly premium payments by protection buyer (t in years)
