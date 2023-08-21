@@ -10,7 +10,7 @@
 ##  datasets. For purposes of illustration, construction relies on the "DJ_Const" 
 ##  dataset contained within the qrmdata package. DJ_Const consists time series price
 ##  data for all Dow-Jones Constituent stocks from ~1960-2015. Options will be priced
-##  on a basket of certain stocks within the 
+##  on a basket of certain stocks; in this case a basket of tech stocks.
 
 ### Data Setup ####
 library(qrmdata)
@@ -52,22 +52,22 @@ sigma.Tech <- sqrt(vars.Tech)
 #   correlation matrix representing this relationship, which can be decomposed into its
 #   cholesky factorization Chol.Tech. Because W_1(T),...,W_6(T) follow a multivariate normal
 #   distribution ~ N.vec(0.vec,SIGMA) where SIGMA = [diag_6(sqrt(T))]*[CORR.Tech]*diag_6(sqrt(T)),
-#   terminal values can be simulated via sqrt(T)*Chol.Tech*Norm.Vec.
+#   terminal values for each constituent stock price can be simulated via sqrt(T)*Chol.Tech*Norm.Vec.
 
-dim(Tech.10s)
 
-S.T_i <- matrix(NA, nrow = 1, ncol = 6, byrow = FALSE)
-Norm.Vec <- rnorm(6, mean = 0, sd = 1)
+## Begin by demonstrating a single simulation step:
+dim(Tech.10s) # Number will be used to identify current price of each constituent stock from data 
+S.T_i <- matrix(NA, nrow = 1, ncol = 6, byrow = FALSE) # Dummy entry matrix to be filled by simulation iteration
+Norm.Vec <- rnorm(6, mean = 0, sd = 1) # Naive number generator - randomized
 
-dS_i = mu*dt + sigma*dW_i 
-
+## Simulating the differential dS_i = mu*dt + sigma*dW_i integrated over [0,T] for i = 1,..,6
 for(i in 1:6)
   {
     S.T_i[1,i] <-  Tech.10s[754,i]*exp((0.03 - 0.5*sigma.Tech[i]^2)*1 + 
                                          sigma.Tech[i]*sqrt(1)*(Lower.Chol.Tech%*%Norm.Vec)[i]) 
 }
 
-B.T <- exp(-0.03*1)*max((sum(S.T_i) - 350),0)
+B.T <- exp(-0.03*1)*max((sum(S.T_i) - 350),0) # 
 
 
 
@@ -104,7 +104,7 @@ EuroCall_Basket.MC <- function(n, S.0s, K, r, COV.matrix, T, NOS)
        Sim.Vec[m] <- exp(-r*T)*max((sum(S.T) - K),0) # Computes the value of the call given strike K
     } # End outter for-loop
      
-   1/NOS*sum(Sim.Vec) # Computes average of all basket calls simulated for a final price
+   1/NOS*sum(Sim.Vec) # Computes average of all basket calls simulated - This is an expectation value that is deemed a sufficient for price for a basket option
 }
 
 EuroCall_Basket.MC(n = 6, S.0s = as.vector(c(71.41594,
