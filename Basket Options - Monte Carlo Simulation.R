@@ -2,15 +2,17 @@
 
 ### Introduction ####
 
-### The following code intends to price a basket or index option on a set number of
-##  underlying securities - all of which follow Geometric Brownian Motion price 
-##  paths with some degree of correlation between each process. Many practitioners 
-##  have named this process as a Naive Monte Carlo Basket Call Option. Correlation 
-##  can be assumed to be derived from covariance measures between the underlying 
-##  datasets. For purposes of illustration, construction relies on the "DJ_Const" 
-##  dataset contained within the qrmdata package. DJ_Const consists time series price
+### This script intends to price a basket or index option on N - number of
+##  underlying risky securities. All underlyings are assumed to follow Geometric  
+##  Brownian Motion random walks with some degree of correlation between each 
+##  respective constituent. Correlation is assumed to be a deterministically static
+##  quantity that is derived from the measurable covariance of past time series distributions 
+##  between each constituent. From the covariance matrix, the Cholesky Decomposition of the 
+##  correlation matrix cross multiplied with random standard normal variables drives the 
+##  simulation through successive iterations. For purposes of illustration, an example 
+##  dataset contained within the qrmdata package, "DJ_Const" consists time series price
 ##  data for all Dow-Jones Constituent stocks from ~1960-2015. Options will be priced
-##  on a basket of certain stocks; in this case a basket of tech stocks.
+##  on a basket of certain stocks; in this case a basket of "tech" stocks.
 
 ### Data Setup ####
 library(qrmdata)
