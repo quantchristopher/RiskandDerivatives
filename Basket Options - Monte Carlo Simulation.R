@@ -1,4 +1,4 @@
-##### Pricing Basic Basket Options by Christopher Thomson
+##### Pricing Index Options via Naive Monte Carlo Basket Method by Christopher Thomson
 
 ### Introduction ####
 
