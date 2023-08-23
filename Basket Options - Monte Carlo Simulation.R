@@ -8,8 +8,9 @@
 ##  respective constituent. Correlation is assumed to be a deterministically static
 ##  quantity that is derived from the measurable covariance of past time series distributions 
 ##  between each constituent. From the covariance matrix, the Cholesky Decomposition of the 
-##  correlation matrix cross multiplied with random standard normal variables drives the 
-##  simulation through successive iterations. For purposes of illustration, an example 
+##  correlation matrix cross multiplied with random standard normal variables drives is used
+##  to generate random walks through successive simulations. A final expectation distribution 
+##  is elucidated following 10000-50000 iterations. For purposes of illustration, an example 
 ##  dataset contained within the qrmdata package, "DJ_Const" consists time series price
 ##  data for all Dow-Jones Constituent stocks from ~1960-2015. Options will be priced
 ##  on a basket of certain stocks; in this case a basket of "tech" stocks.
