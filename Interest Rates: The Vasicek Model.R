@@ -73,7 +73,7 @@ abline(h = 0.065) # See that the steady state conditional expectation is equal t
 
 ### Zero Coupon Bond Pricing Function ####
 
-# If the spot interest rate is assumed to follow the Vasicek model, the fair price of a Zero 
+# If the spot interest rate is assumed to follow the Vasicek model, the fair price of a zero 
 # coupon bond can then be found using the following function:
 
 # Notional is the cash amount to be redeemed at maturity.
