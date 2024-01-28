@@ -1,0 +1,90 @@
+##### Monte Carlo Methods for Pricing Derivative Securities by Christopher Thomson
+
+## The following code demonstrates the application of Monte Carlo simulation in the use of pricing
+## financial options on underlying stock. Both price-path independent and dependent contracts are functionally
+## designed with listed inputs. 
+
+
+### Basic European Call Option Pricer with Monte Carlo ####
+## Assumes price path follows geometric Brownian Motion, there is no cost/profit of 
+## carrying the underlying asset other than earning the risk free rate.
+# S.0   = Current Price
+# K     = Option Strike
+# r     = Risk Free Interest Rate (Deterministic)
+# sigma = Annualized Volatility
+# T     = Maturity (Preferably in Years with convention 250/250)
+# t     = Time to Maturity (Preferably in fractions of years 1/250)
+# N     = Number of Simulations of terminal price S.T
+
+Euro.Call.MC <- function(S.t, K, r, sigma, T, t, N) 
+{
+  S.Tvec <- rep(NA, N) # Generates empty vectors to be filled by for loop
+  V.nT <- rep(NA,N) # ""
+  for(i in 1:N) 
+    {
+      # First Line Simulates stock price under at terminal time T under 
+      # risk neutral probability measure. Maps values to the first dummy vector:
+      S.Tvec[i] <- S.t*exp((r - 0.5*sigma^2)*(T-t) + sigma*sqrt(T-t)*(rnorm(1,0,1)))
+      # Second line computes the what the payoff of Euro-Call would be for each 
+      # simulated terminal stock price above:
+      V.nT[i] <- max(S.Tvec[i] - K, 0)
+    }
+  
+  # Computes the sum of of option payoffs divided by the number of option payoffs
+  # discounted by the risk free rate over length of time until maturity
+  exp(-r*(T-t))*(1/N)*sum(V.nT)
+  
+}
+
+# set.seed(287)-"Delete everything in quotations in this line and the '#' to set seed for reproducible simulation"
+Euro.Call.MC(S.t = 10.56, K = 11.00, r = 0.0311, sigma = 0.15, T = 1, t = 71/250, N = 1000)
+# ~ 0.4257
+
+### To check, can use analytical formula:
+## (Note that b = r in this case as no Cost/Profit aside from risk free rate)
+Euro.Call.Analytic.b <- function(S.t, K, b, r, sigma, T, t)
+{
+  dplus <- (log(S.t/K)+(b+0.5*sigma^2)*(T-t))/(sigma*sqrt(T-t))
+  dminus <- (log(S.t/K)+(b-0.5*sigma^2)*(T-t))/(sigma*sqrt(T-t))
+  # Compute:
+  exp((b-r)*(T-t))*S.t*pnorm(dplus, mean = 0, sd = 1) - exp(-r*(T-t))*K*pnorm(dminus, mean = 0, sd = 1)
+}
+
+## Test to compare:
+Euro.Call.Analytic.b(10.56, 11, .0311, .0311, .15, 1, 71/250)
+# ~ 0.4462
+
+### Basic European Put Option Pricer with Monte Carlo ####
+## Same inputs as Call Option above:
+
+Euro.Put.MC <- function(S.t, K, r, sigma, T, t, N) 
+{
+  S.TvecP <- rep(NA, N) # Generates empty vectors to be filled by for loop
+  V.nTP <- rep(NA,N) # ""
+  for(i in 1:N) 
+  {
+    # First Line Simulates stock price under at terminal time T under 
+    # risk neutral probability measure. Maps values to the empty vector:
+    S.TvecP[i] <- S.t*exp((r - 0.5*sigma^2)*(T-t) + sigma*sqrt(T-t)*(rnorm(1,0,1)))
+    # Second line computes the what the payoff of Euro-Put would be for each 
+    # simulated terminal stock price above:
+    V.nTP[i] <- max(K - S.TvecP[i], 0)
+  }
+  
+  # Computes the sum of of option payoffs divided by the number of option payoffs
+  # discounted by the risk free rate over length of time until maturity
+  exp(-r*(T-t))*(1/N)*sum(V.nTP)
+  
+}
+Euro.Put.MC(36.71,45,.0361,.16,1,57/250,100)
+
+# Check with analytical solution (again b = r here as no cost/profit beyond earning rf exists here):
+Euro.Put.b <- function(S.t, K, b, r, sigma, T, t) 
+{
+  dplus <- (log(S.t/K)+(b+0.5*sigma^2)*(T-t))/(sigma*sqrt(T-t))
+  dminus <- (log(S.t/K)+(b-0.5*sigma^2)*(T-t))/(sigma*sqrt(T-t))
+  # Compute:
+  exp(-r*(T-t))*K*pnorm(-dminus, mean = 0, sd = 1) - exp((b-r)*(T-t))*S.t*pnorm(-dplus, mean = 0, sd = 1)
+}
+Euro.Put.b(36.71,45,0.0361,0.0361,.16,1,57/250)
+
