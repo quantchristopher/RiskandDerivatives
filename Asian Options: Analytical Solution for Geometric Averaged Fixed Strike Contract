@@ -1,0 +1,41 @@
+##### Formulas for Fixed Strike Geometrically Averaged Asian Option by Christopher Thomson
+
+### Uniquely, Asian Options in which the final payoff is the difference between the geometrically 
+##  averaged price of the underlying asset and a fixed strike can be solved to have an explicit analytical solution. 
+##  It should be noted however that this formula is only applicable to contracts at their initialization. The formula 
+##  fails once the underlying asset has begun accumulating quadratic variation through continuous movement - at which
+##  point the pricing methodology must shift to a numerical approach. Also note that strong assumptions are made about
+##  the risk free interest rate and volatility of the underlying asset.
+
+
+### Formula for Fixed Strike Geometrically Averaged Asian Call Option 
+Asia.Call.b <- function(S.0, K, b, r, sigma, T)
+{
+  asia.b <- 0.5*(b - ((sigma^2)/6))
+  asia.sigma <- sigma/sqrt(3)
+  
+  d.plus.asia <- (log(S.0/K) + (asia.b + 0.5*asia.sigma^2)*T)/(asia.sigma*sqrt(T))
+  d.minus.asia <- (log(S.0/K) + (asia.b  - 0.5*asia.sigma^2)*T)/(asia.sigma*sqrt(T))
+
+  exp((asia.b - r)*T)*S.0*pnorm(d.plus.asia, mean = 0, sd = 1) - exp(-r*T)*K*pnorm(d.minus.asia, mean = 0, sd = 1)
+  
+}
+# Example of Geometrically Averaged Asian Call:
+Asia.Call.b(45,41,.0211,.0211,.09,1)
+
+
+### Formula for Geometrically Averaged Fixed Strike Asian Put:
+Asia.Put.b <-  function(S.0, K, b, r, sigma, T)
+{
+  asia.b <- 0.5*(b - ((sigma^2)/6))
+  asia.sigma <- sigma/sqrt(3)
+  
+  d.plus.asia <- (log(S.0/K) + (asia.b + 0.5*asia.sigma^2)*T)/(asia.sigma*sqrt(T))
+  d.minus.asia <- (log(S.0/K) + (asia.b - 0.5*asia.sigma^2)*T)/(asia.sigma*sqrt(T))
+  
+  -exp((asia.b - r)*T)*S.0*pnorm(-d.plus.asia, mean = 0, sd = 1) + exp(-r*T)*K*pnorm(-d.minus.asia, mean = 0, sd = 1)  
+  
+}
+
+## For Example Compute:
+Asia.Put.b(34,46.11,.0211,.0211,.09,1)
